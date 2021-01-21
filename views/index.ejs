@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<!--Head-->
+<%-include('./partials/head')%>
+<body>
+	<!--Header-->
+	<%-include('./partials/header')%>
+	<section class="banner">
+		<img src="/images/products/img-home-banner.jpg" alt="">
+	</section>
+
+	<div class="container">
+		<!-- SECCION: PRODUCTOS ULTIMA VISITA -->
+		<section class="row">
+			<div class="titulo col-12">
+				<h2 class="products-title">
+					Basado en tu última visita
+				</h2>
+			</div>
+			<% productsVisited.forEach(producto => { %>
+				<div class="col-12 col-md-6 col-lg-3">
+					<section class="producto-box">
+							<a href="">
+								<figure>
+									<a href=""><img src="/images/product<%= producto.image %>" alt=""></a>
+								</figure>
+								<article>
+									<h2>$<%- (producto.price - producto.price * producto.discount / 100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %> </h2>
+									<% if (producto.discount !=0) { %>
+										<span> <%= producto.discount %>  %OFF </span>
+									<% } %>
+									<i class="fas fa-truck "></i>
+								</article>
+								<p> <% product.name %></p> 
+						</section>
+					</a>
+				</div>
+			<% }) %>
+			</div>
+		</section>
+	
+		<!--SECCION OFERTAS-->
+		<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">
+					Ofertas
+				</h2>
+			</div>
+			<% productsVisited.forEach(producto => { %>
+				<div class="col-12 col-md-6 col-lg-3">
+					<section class="producto-box">
+							<a href="/product/detail/<%- producto.id %>/<%- producto.category %>  ">
+								<figure class='product-box_image'>
+									<a href=""><img src="/images/product<%= producto.image %>" alt=""></a>
+								</figure>
+								<article>
+									<h2>$<%- (producto.price - producto.price * producto.discount / 100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %> </h2>
+									<% if (producto.discount !=0) { %>
+										<span> <%= producto.discount %>  %OFF </span>
+									<% } %>
+									<p> <% product.name %></p> 
+									<i class="fas fa-truck "></i>
+								</article>
+							</a>
+					</section>
+				</div>
+			<% }) %>
+			</div>
+		</div>
+	</div>
+		<!--Footer-->
+		<%-include('./partials/footer')%>
+		<!--Scripts-->
+		<%-include('./partials/scripts')%>
+</body>
+</html>
